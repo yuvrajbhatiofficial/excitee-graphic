@@ -1,0 +1,183 @@
+---
+import { siteData } from "../data/site";
+
+const { brand, footer, contact } = siteData;
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="w-full bg-[#1428EE] text-[#f6f6f6] border-t border-white/5 pt-20 pb-12 px-6 sm:px-8 lg:px-12"
+  aria-label="Global Site Footer"
+>
+  <div class="max-w-[1400px] mx-auto">
+    <!-- 4-Column Main Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/10">
+      <!-- Col 1: Brand & Intro (5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col justify-between">
+        <div>
+          <a
+            href="#"
+            class="inline-block font-display text-2xl sm:text-3xl tracking-tight text-[#f6f6f6] uppercase mb-4"
+          >
+            {brand.wordmark}
+          </a>
+          <p class="font-body text-sm sm:text-base text-[#f6f6f6]/60 max-w-sm leading-relaxed mb-6">
+            {footer.agencyIntro}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 font-body text-xs tracking-[0.2em] uppercase text-[#f6f6f6]/40">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>AVAILABLE FOR NEW COMMISSIONS</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation (2 Cols) -->
+      <div class="lg:col-span-2">
+        <h3 class="font-body text-xs tracking-[0.25em] uppercase text-[#f6f6f6] mb-6">
+          NAVIGATION
+        </h3>
+        <ul class="space-y-3 font-body text-sm">
+          <li>
+            <a
+              href="#"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#work"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              Work
+            </a>
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              Services
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Explore (2 Cols) -->
+      <div class="lg:col-span-2">
+        <h3 class="font-body text-xs tracking-[0.25em] uppercase text-[#f6f6f6] mb-6">
+          EXPLORE
+        </h3>
+        <ul class="space-y-3 font-body text-sm">
+          <li>
+            <a
+              href={contact.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150 inline-flex items-center gap-1.5"
+            >
+              <span>Instagram</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#work"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              Selected Work
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Connect (3 Cols) -->
+      <div class="lg:col-span-3">
+        <h3 class="font-body text-xs tracking-[0.25em] uppercase text-[#f6f6f6] mb-6">
+          CONNECT
+        </h3>
+        <div class="space-y-4 font-body text-sm">
+          <div>
+            <span class="block text-xs uppercase tracking-wider text-[#f6f6f6]/40 mb-1">
+              Direct Inquiries
+            </span>
+            <a
+              href={`mailto:${contact.email}`}
+              class="text-[#f6f6f6]/80 hover:text-[#f6f6f6] transition-colors duration-150"
+            >
+              {contact.email}
+            </a>
+          </div>
+          <div>
+            <span class="block text-xs uppercase tracking-wider text-[#f6f6f6]/40 mb-1">
+              Location
+            </span>
+            <span class="text-[#f6f6f6]/80">{contact.location}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Copyright & Dynamic Year & Back to Top -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-[#f6f6f6]/50">
+      <div>
+        © {currentYear} {brand.name}. ALL RIGHTS RESERVED.
+      </div>
+      <div class="flex items-center gap-6">
+        <span>SWISS BRUTALIST EDITORIAL DESIGN</span>
+        <a
+          href="#"
+          class="text-[#f6f6f6]/60 hover:text-[#f6f6f6] transition-colors duration-150 uppercase tracking-widest inline-flex items-center gap-1.5"
+          aria-label="Back to top of page"
+        >
+          <span>TOP</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

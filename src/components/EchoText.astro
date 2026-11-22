@@ -1,0 +1,60 @@
+---
+interface Props {
+  text: string;
+  className?: string;
+  as?: 'h1' | 'h2' | 'div';
+}
+
+const { text, className = '', as = 'h1' } = Astro.props;
+const lines = text.split('\n');
+const HeadingTag = as;
+---
+
+<div class={`relative inline-block select-none text-center ${className}`}>
+  <!-- Background Echo Layer 4 (#d9d9d9, offset -0.16em) -->
+  <div 
+    class="absolute inset-0 pointer-events-none select-none font-display text-[#d9d9d9] transform -translate-x-[0.16em] -translate-y-[0.16em] z-1 transition-transform duration-500 ease-out will-change-transform"
+    aria-hidden="true"
+  >
+    {lines.map((line, idx) => (
+      <span class="block leading-[0.88] tracking-[-0.05em]">{line}</span>
+    ))}
+  </div>
+
+  <!-- Background Echo Layer 3 (#d1d1d1, offset -0.12em) -->
+  <div 
+    class="absolute inset-0 pointer-events-none select-none font-display text-[#d1d1d1] transform -translate-x-[0.12em] -translate-y-[0.12em] z-2 transition-transform duration-500 ease-out will-change-transform"
+    aria-hidden="true"
+  >
+    {lines.map((line, idx) => (
+      <span class="block leading-[0.88] tracking-[-0.05em]">{line}</span>
+    ))}
+  </div>
+
+  <!-- Background Echo Layer 2 (#c9c9c9, offset -0.08em) -->
+  <div 
+    class="absolute inset-0 pointer-events-none select-none font-display text-[#c9c9c9] transform -translate-x-[0.08em] -translate-y-[0.08em] z-3 transition-transform duration-500 ease-out will-change-transform"
+    aria-hidden="true"
+  >
+    {lines.map((line, idx) => (
+      <span class="block leading-[0.88] tracking-[-0.05em]">{line}</span>
+    ))}
+  </div>
+
+  <!-- Background Echo Layer 1 (#bfbfbf, offset -0.04em) -->
+  <div 
+    class="absolute inset-0 pointer-events-none select-none font-display text-[#bfbfbf] transform -translate-x-[0.04em] -translate-y-[0.04em] z-4 transition-transform duration-500 ease-out will-change-transform"
+    aria-hidden="true"
+  >
+    {lines.map((line, idx) => (
+      <span class="block leading-[0.88] tracking-[-0.05em]">{line}</span>
+    ))}
+  </div>
+
+  <!-- Foreground Headline Layer (#111111) -->
+  <HeadingTag class="relative z-10 font-display text-[#111111]">
+    {lines.map((line, idx) => (
+      <span class="block leading-[0.88] tracking-[-0.05em]">{line}</span>
+    ))}
+  </HeadingTag>
+</div>

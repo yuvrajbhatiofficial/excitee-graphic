@@ -1,0 +1,149 @@
+---
+import { siteData } from '../data/site';
+
+const { services } = siteData;
+---
+
+<section 
+  id="services" 
+  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-8 lg:px-12 border-t border-[#111111]/10 bg-[#f2f2f2]"
+  aria-label="Agency Capabilities & Services"
+>
+  <div class="max-w-[1400px] mx-auto">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 sm:pb-16 border-b border-[#111111]/15 mb-16 sm:mb-20">
+      <div>
+        <span class="font-body text-xs tracking-[0.25em] uppercase text-[#838282] block mb-3">
+          {services.sectionNumber}
+        </span>
+        <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-[-0.04em] text-[#111111] leading-none">
+          {services.sectionTitle}
+        </h2>
+      </div>
+      <p class="font-body text-sm sm:text-base text-[#111111]/70 max-w-md leading-relaxed">
+        {services.subtitle}
+      </p>
+    </div>
+
+    <!-- 3-Column Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {services.items.map((service) => (
+        <div class="group relative flex flex-col justify-between p-8 sm:p-10 lg:p-12 border border-[#1e1e1e]/10 bg-transparent hover:bg-[#ffffff] transition-all duration-300 ease-out hover:shadow-xl hover:shadow-[#111111]/5">
+          <!-- Top Area: Number & Geometric Rotating Icon Container -->
+          <div>
+            <div class="flex items-start justify-between mb-12">
+              <span class="font-body text-xs font-semibold tracking-[0.25em] text-[#838282] uppercase">
+                // {service.number}
+              </span>
+              
+              <!-- 64x64px Geometric Icon Container with 12 degree hover rotation -->
+              <div class="w-16 h-16 border border-[#1e1e1e]/15 flex items-center justify-center bg-[#f2f2f2] group-hover:bg-[#111111] group-hover:border-[#111111] group-hover:rotate-12 transition-all duration-300 ease-out">
+                {service.icon === 'film' && (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="26" 
+                    height="26" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="1.5" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                    class="text-[#111111] group-hover:text-[#ffffff] transition-colors duration-300"
+                  >
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <path d="M7 3v18" />
+                    <path d="M3 7.5h4" />
+                    <path d="M3 12h18" />
+                    <path d="M3 16.5h4" />
+                    <path d="M17 3v18" />
+                    <path d="M17 7.5h4" />
+                    <path d="M17 16.5h4" />
+                  </svg>
+                )}
+
+                {service.icon === 'compass' && (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="26" 
+                    height="26" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="1.5" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                    class="text-[#111111] group-hover:text-[#ffffff] transition-colors duration-300"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                  </svg>
+                )}
+
+                {service.icon === 'sparkles' && (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="26" 
+                    height="26" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="1.5" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                    class="text-[#111111] group-hover:text-[#ffffff] transition-colors duration-300"
+                  >
+                    <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+                  </svg>
+                )}
+              </div>
+            </div>
+
+            <!-- Title & Description -->
+            <h3 class="font-display text-2xl sm:text-3xl uppercase tracking-[-0.03em] text-[#111111] mb-4">
+              {service.title}
+            </h3>
+            <p class="font-body text-[#111111]/75 text-sm sm:text-base leading-relaxed mb-8">
+              {service.description}
+            </p>
+
+            <!-- Deliverables List -->
+            <ul class="space-y-2.5 pt-6 border-t border-[#111111]/10">
+              {service.deliverables.map((item) => (
+                <li class="flex items-center gap-2.5 font-body text-xs sm:text-sm text-[#111111]/70">
+                  <span class="w-1 h-1 rounded-full bg-[#111111]"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Arrow CTA at bottom -->
+          <div class="mt-12 pt-6 border-t border-[#111111]/10 flex items-center justify-between">
+            <a 
+              href="#contact" 
+              class="inline-flex items-center gap-2 font-body text-xs uppercase tracking-[0.2em] text-[#111111] group-hover:text-[#111111] font-semibold"
+            >
+              <span>INQUIRE SERVICE</span>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+                class="transform group-hover:translate-x-1 transition-transform duration-200"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

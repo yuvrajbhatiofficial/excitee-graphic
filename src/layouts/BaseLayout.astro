@@ -1,0 +1,132 @@
+---
+import '../styles/global.css';
+import SmoothScroll from '../components/SmoothScroll.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { siteData } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title = siteData.seo.title,
+  description = siteData.seo.description,
+  ogImage = siteData.seo.ogImage,
+  canonical = siteData.seo.canonical,
+} = Astro.props;
+
+// Schema.org JSON-LD Structured Data
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: siteData.brand.name,
+  alternateName: 'Excitee Graphic',
+  description: siteData.seo.description,
+  url: siteData.seo.canonical,
+  logo: 'https://exciteegraphic.com/images/og-image.svg',
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'IN',
+    addressLocality: 'India',
+  },
+  areaServed: [
+    {
+      '@type': 'Country',
+      name: 'India',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Worldwide',
+    },
+  ],
+  sameAs: [siteData.contact.instagramUrl],
+  knowsAbout: [
+    'Cinematic Shoots',
+    'Commercial Photography',
+    'Brand Identity',
+    'Graphic Designing',
+    'Video Editing',
+    'Social Media Marketing',
+    'Visual Storytelling',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content={siteData.seo.themeColor} />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteData.brand.name} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Typography: Fontshare (Clash Display, Satoshi) & Google Fonts (Playfair Display Italic) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700&display=swap"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-[#f2f2f2] text-[#111111] selection:bg-[#111111] selection:text-[#f2f2f2]">
+    <!-- Accessibility Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#111111] focus:text-[#f2f2f2] focus:rounded-sm"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Sticky Navigation Bar -->
+    <Navigation />
+
+    <!-- Main Content Flow -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Deep Dark Footer -->
+    <Footer />
+
+    <!-- Lenis Smooth Scrolling Engine -->
+    <SmoothScroll />
+  </body>
+</html>

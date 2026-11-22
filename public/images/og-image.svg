@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      .bg { fill: #f2f2f2; }
+      .text-dark { fill: #111111; font-family: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 700; }
+      .text-sub { fill: #838282; font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500; }
+      .echo-1 { fill: #bfbfbf; }
+      .echo-2 { fill: #d1d1d1; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" class="bg" />
+
+  <!-- Echo Typography Effect in OG Image -->
+  <g transform="translate(100, 240)">
+    <!-- Echo Layer 2 -->
+    <text x="-16" y="24" font-size="88" letter-spacing="-3" class="echo-2" opacity="0.6">WE MAKE VISUALS MATTER.</text>
+    <!-- Echo Layer 1 -->
+    <text x="-8" y="12" font-size="88" letter-spacing="-3" class="echo-1" opacity="0.8">WE MAKE VISUALS MATTER.</text>
+    <!-- Foreground -->
+    <text x="0" y="0" font-size="88" letter-spacing="-3" class="text-dark">WE MAKE VISUALS MATTER.</text>
+  </g>
+
+  <!-- Brand Wordmark & Location -->
+  <text x="100" y="100" font-size="24" font-family="'Clash Display', sans-serif" font-weight="700" letter-spacing="2" fill="#111111">EXCITEE.GRAPHIC</text>
+  <text x="1100" y="100" font-size="14" font-family="'Satoshi', sans-serif" font-weight="700" letter-spacing="4" fill="#838282" text-anchor="end">INDIA / CREATIVE AGENCY</text>
+
+  <!-- Tagline & Services Footer -->
+  <line x1="100" y1="460" x2="1100" y2="460" stroke="#b6b5b5" stroke-width="1" />
+  <text x="100" y="520" font-size="20" class="text-sub">Cinematic Shoots • Branding • Social Media Marketing • Graphic Designing • Video Editing</text>
+  <text x="100" y="560" font-size="14" font-family="'Satoshi', sans-serif" letter-spacing="2" fill="#111111">AN INDEPENDENT CREATIVE STUDIO SHAPING BRANDS THROUGH VISUAL STORYTELLING</text>
+</svg>

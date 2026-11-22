@@ -1,0 +1,95 @@
+---
+// SmoothScroll.astro
+// Integrates Lenis smooth scrolling with requestAnimationFrame, anchor link offsets, and reduced motion checks.
+---
+
+<script>
+  import Lenis from 'lenis';
+  import 'lenis/dist/lenis.css';
+
+  declare global {
+    interface Window {
+      __lenis?: Lenis;
+    }
+  }
+
+  let lenisInstance: Lenis | null = null;
+  let rafId: number | null = null;
+
+  function initLenis() {
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      if (lenisInstance) {
+        lenisInstance.destroy();
+        lenisInstance = null;
+      }
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      return;
+    }
+
+    if (lenisInstance) return;
+
+    lenisInstance = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+    });
+
+    window.__lenis = lenisInstance;
+
+    function raf(time: number) {
+      lenisInstance?.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    // Anchor navigation integration with 80px header offset
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href) return;
+        if (href === '#') {
+          e.preventDefault();
+          lenisInstance?.scrollTo(0, { duration: 1.2 });
+          return;
+        }
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          lenisInstance?.scrollTo(target as HTMLElement, {
+            offset: -80, // account for 80px sticky header
+            duration: 1.2,
+          });
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLenis);
+  } else {
+    initLenis();
+  }
+  document.addEventListener('astro:page-load', initLenis);
+
+  document.addEventListener('astro:before-swap', () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    if (lenisInstance) {
+      lenisInstance.destroy();
+      lenisInstance = null;
+    }
+  });
+
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+    initLenis();
+  });
+</script>

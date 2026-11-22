@@ -1,0 +1,180 @@
+---
+import { siteData } from '../data/site';
+
+const { portfolio } = siteData;
+const [project1, project2, project3, project4] = portfolio.projects;
+---
+
+<section 
+  id="work" 
+  class="relative py-24 sm:py-32 lg:py-40 px-6 sm:px-8 lg:px-12 border-t border-[#111111]/10 bg-[#f2f2f2]"
+  aria-label="Selected Portfolio Projects"
+>
+  <div class="max-w-[1400px] mx-auto">
+    <!-- Header with Minimal Swiss Editorial Typography -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 sm:pb-16 border-b border-[#111111]/15 mb-16 sm:mb-24">
+      <div>
+        <span class="font-body text-xs tracking-[0.25em] uppercase text-[#838282] block mb-3">
+          {portfolio.sectionNumber}
+        </span>
+        <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-[-0.04em] text-[#111111] leading-none">
+          {portfolio.sectionTitle}
+        </h2>
+      </div>
+      <p class="font-body text-sm sm:text-base text-[#111111]/70 max-w-md leading-relaxed">
+        {portfolio.subtitle}
+      </p>
+    </div>
+
+    <!-- 12-Column Asymmetrical Grid -->
+    <div class="grid grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <!-- 01: Large Landscape Image (8 Columns) -->
+      <article class="col-span-12 lg:col-span-8 group flex flex-col">
+        <div class="relative overflow-hidden bg-[#e5e5e5] w-full portfolio-reveal border border-[#111111]/10">
+          <div class="aspect-[16/10] w-full overflow-hidden">
+            <img 
+              src={project1.image} 
+              alt={project1.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover grayscale-[20%] transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:grayscale-0 group-hover:scale-105"
+            />
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-[#111111]/10 pb-4">
+          <div>
+            <span class="text-xs font-body tracking-[0.2em] uppercase text-[#838282] block mb-1">
+              // 01 • {project1.category}
+            </span>
+            <h3 class="font-display text-xl sm:text-2xl uppercase tracking-tight text-[#111111]">
+              {project1.title}
+            </h3>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-[#111111]/75 max-w-xs text-left sm:text-right">
+            {project1.description}
+          </p>
+        </div>
+      </article>
+
+      <!-- 02: Tall Vertical Image with Full Pill-Shaped Radius (4 Columns) -->
+      <article class="col-span-12 sm:col-span-6 lg:col-span-4 group flex flex-col lg:mt-16">
+        <div class="relative overflow-hidden bg-[#e5e5e5] w-full rounded-full portfolio-reveal border border-[#111111]/10 shadow-sm">
+          <div class="aspect-[9/16] w-full overflow-hidden">
+            <img 
+              src={project2.image} 
+              alt={project2.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover grayscale-[20%] transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:grayscale-0 group-hover:scale-105"
+            />
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col gap-1 border-b border-[#111111]/10 pb-4">
+          <span class="text-xs font-body tracking-[0.2em] uppercase text-[#838282]">
+            // 02 • {project2.category}
+          </span>
+          <h3 class="font-display text-xl uppercase tracking-tight text-[#111111]">
+            {project2.title}
+          </h3>
+          <p class="font-body text-xs sm:text-sm text-[#111111]/75 mt-1">
+            {project2.description}
+          </p>
+        </div>
+      </article>
+
+      <!-- 03: Circular Image (5 Columns) -->
+      <article class="col-span-12 sm:col-span-6 lg:col-span-5 group flex flex-col lg:pt-16">
+        <div class="relative overflow-hidden bg-[#e5e5e5] w-full max-w-[440px] mx-auto rounded-full aspect-square portfolio-reveal border border-[#111111]/10 shadow-sm">
+          <div class="w-full h-full overflow-hidden">
+            <img 
+              src={project3.image} 
+              alt={project3.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover grayscale-[20%] transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:grayscale-0 group-hover:scale-105"
+            />
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col gap-1 border-b border-[#111111]/10 pb-4 max-w-[440px] mx-auto w-full">
+          <span class="text-xs font-body tracking-[0.2em] uppercase text-[#838282]">
+            // 03 • {project3.category}
+          </span>
+          <h3 class="font-display text-xl uppercase tracking-tight text-[#111111]">
+            {project3.title}
+          </h3>
+          <p class="font-body text-xs sm:text-sm text-[#111111]/75 mt-1">
+            {project3.description}
+          </p>
+        </div>
+      </article>
+
+      <!-- 04: Wide Rectangular Image (7 Columns) -->
+      <article class="col-span-12 lg:col-span-7 group flex flex-col lg:pt-8">
+        <div class="relative overflow-hidden bg-[#e5e5e5] w-full portfolio-reveal border border-[#111111]/10">
+          <div class="aspect-[16/9] w-full overflow-hidden">
+            <img 
+              src={project4.image} 
+              alt={project4.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover grayscale-[20%] transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:grayscale-0 group-hover:scale-105"
+            />
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-[#111111]/10 pb-4">
+          <div>
+            <span class="text-xs font-body tracking-[0.2em] uppercase text-[#838282] block mb-1">
+              // 04 • {project4.category}
+            </span>
+            <h3 class="font-display text-xl sm:text-2xl uppercase tracking-tight text-[#111111]">
+              {project4.title}
+            </h3>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-[#111111]/75 max-w-xs text-left sm:text-right">
+            {project4.description}
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function initReveals() {
+    const reveals = document.querySelectorAll('.portfolio-reveal');
+    if (!reveals.length) return;
+
+    // If reduced motion is preferred, mark revealed immediately
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reveals.forEach((el) => el.classList.add('is-revealed'));
+      return;
+    }
+
+    document.documentElement.classList.add('js-reveal-active');
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveals);
+  } else {
+    initReveals();
+  }
+</script>

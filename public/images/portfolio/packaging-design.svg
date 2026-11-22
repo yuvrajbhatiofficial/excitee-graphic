@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="emeraldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22" />
+      <stop offset="50%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#d97706" />
+      <stop offset="80%" stop-color="#fef3c7" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Deep Emerald Background with Swiss Grid Lines -->
+  <rect width="1600" height="900" fill="url(#emeraldBg)" />
+  
+  <g opacity="0.12" stroke="#ffffff" stroke-width="1">
+    <line x1="200" y1="0" x2="200" y2="900" />
+    <line x1="600" y1="0" x2="600" y2="900" />
+    <line x1="1000" y1="0" x2="1000" y2="900" />
+    <line x1="1400" y1="0" x2="1400" y2="900" />
+    <line x1="0" y1="225" x2="1600" y2="225" />
+    <line x1="0" y1="450" x2="1600" y2="450" />
+    <line x1="0" y1="675" x2="1600" y2="675" />
+  </g>
+
+  <!-- Packaging Isometric Boxes & Tactile Labels -->
+  <!-- Box 1: Left Main Box -->
+  <g filter="url(#boxShadow)">
+    <polygon points="340,320 620,190 890,310 610,450" fill="#14532d" />
+    <polygon points="340,320 610,450 610,750 340,600" fill="#064e3b" />
+    <polygon points="610,450 890,310 890,610 610,750" fill="#022c22" />
+    <!-- Gold Debossed Brandmark on Box -->
+    <rect x="440" y="480" width="80" height="80" fill="url(#goldFoil)" opacity="0.9" transform="skewY(24)" />
+    <text x="460" y="530" font-family="'Clash Display', sans-serif" font-weight="700" font-size="28" fill="#022c22" transform="skewY(24)">EX</text>
+  </g>
+
+  <!-- Box 2: Cylindrical / Secondary Container -->
+  <g filter="url(#boxShadow)">
+    <polygon points="980,380 1200,280 1380,370 1160,480" fill="#ecfdf5" opacity="0.95" />
+    <polygon points="980,380 1160,480 1160,780 980,670" fill="#d1fae5" />
+    <polygon points="1160,480 1380,370 1380,660 1160,780" fill="#a7f3d0" />
+    <!-- Typography on secondary container -->
+    <text x="1020" y="550" font-family="'Satoshi', sans-serif" font-weight="700" font-size="18" letter-spacing="4" fill="#064e3b" transform="skewY(25)">NO. 04 / PACK</text>
+  </g>
+
+  <!-- Swiss Editorial Information footer overlay -->
+  <g font-family="'Satoshi', sans-serif" fill="#ffffff" opacity="0.8">
+    <text x="80" y="820" font-size="14" letter-spacing="4">MATERIAL: 100% POST-CONSUMER CELLULOSE</text>
+    <text x="1520" y="820" font-size="14" letter-spacing="4" text-anchor="end">SWISS GRID SPECIFICATION 16:9</text>
+  </g>
+</svg>

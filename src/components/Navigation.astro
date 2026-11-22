@@ -1,0 +1,278 @@
+---
+import { siteData } from "../data/site";
+
+const { brand, navigation } = siteData;
+---
+
+<!-- Fixed Pin Wrapper: 100% full width with zero padding to prevent side gap errors -->
+<div
+    class="fixed top-0 left-0 right-0 w-full z-50 pointer-events-none flex justify-center"
+    id="nav-wrapper"
+>
+    <!-- Interactive Liquid Glass Navbar -->
+    <header
+        id="main-navbar"
+        class="pointer-events-auto w-full max-w-none h-[80px] rounded-none glass-liquid-base px-6 sm:px-8 lg:px-12 flex items-center justify-between transition-all duration-450 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    >
+        <div class="max-w-[1400px] w-full h-full mx-auto flex items-center justify-between">
+            <!-- Brand Wordmark -->
+            <a
+                href="#"
+                class="group inline-flex items-center gap-2.5 sm:gap-3 text-[#111111] focus-visible:outline-2 focus-visible:outline-[#111111]"
+                aria-label="Excitee.graphic - Return to top"
+            >
+                <span
+                    class="font-display text-[18px] sm:text-[21px] lg:text-[23px] tracking-[-0.04em] uppercase transition-all duration-200 group-hover:opacity-70"
+                    id="brand-wordmark"
+                >
+                    {brand.wordmark}
+                </span>
+                <span class="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#111111] transition-transform duration-300 group-hover:scale-125"></span>
+                <span class="hidden md:inline-block font-body text-[10px] lg:text-[11px] tracking-[0.2em] uppercase text-[#838282]">
+                    {brand.location}
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav
+                class="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-10"
+                aria-label="Main Navigation"
+            >
+                <ul class="flex items-center gap-6 lg:gap-8">
+                    {navigation.map((item) => {
+                        const isContact = item.label === "CONTACT";
+                        if (isContact) return null;
+                        return (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="font-body text-[13px] lg:text-[14px] uppercase tracking-[0.08em] text-[#111111] transition-colors duration-[120ms] ease-out hover:text-[#838282] focus-visible:outline-2 focus-visible:outline-[#111111]"
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        );
+                    })}
+                </ul>
+
+                <!-- Contact CTA Pill Button -->
+                <a
+                    href="#contact"
+                    id="nav-contact-cta"
+                    class="inline-flex items-center justify-center px-5 py-2 sm:px-6 sm:py-2.5 rounded-full border border-[#1e1e1e] font-body text-[12px] sm:text-[13px] uppercase tracking-[0.1em] text-[#111111] bg-transparent hover:bg-[#1428EE] hover:border-0 hover:text-[#f2f2f2] transition-all duration-200 ease-out focus-visible:outline-2 focus-visible:outline-[#111111]"
+                >
+                    CONTACT
+                </a>
+            </nav>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button
+                id="mobile-nav-toggle"
+                type="button"
+                class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-full"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <span
+                    class="w-5 h-[1.5px] bg-[#111111] transition-transform duration-300 origin-center"
+                    id="nav-line-top"
+                ></span>
+                <span
+                    class="w-5 h-[1.5px] bg-[#111111] transition-opacity duration-200"
+                    id="nav-line-mid"
+                ></span>
+                <span
+                    class="w-5 h-[1.5px] bg-[#111111] transition-transform duration-300 origin-center"
+                    id="nav-line-bot"
+                ></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer / Overlay with Liquid Glass Effect -->
+    <div
+        id="mobile-menu"
+        class="md:hidden pointer-events-auto fixed inset-x-4 top-[88px] max-w-[500px] mx-auto glass-drawer rounded-3xl p-6 sm:p-8 shadow-2xl opacity-0 pointer-events-none -translate-y-4 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-40"
+        aria-hidden="true"
+    >
+        <ul class="flex flex-col gap-5">
+            {navigation.map((item) => (
+                <li>
+                    <a
+                        href={item.href}
+                        class="mobile-nav-link block font-display text-2xl uppercase tracking-tight text-[#111111] transition-colors duration-150 hover:text-[#838282]"
+                    >
+                        {item.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+        <div class="mt-6 pt-5 border-t border-[#111111]/10 flex flex-col gap-3">
+            <span class="text-[11px] font-body tracking-[0.2em] uppercase text-[#838282]">
+                {brand.category} • {brand.location}
+            </span>
+            <a
+                href="#contact"
+                class="mobile-nav-link inline-flex items-center justify-center w-full py-3 rounded-full border border-[#1e1e1e] font-body text-xs uppercase tracking-wider text-center text-[#111111] bg-[#111111] text-[#f2f2f2] hover:bg-transparent hover:text-[#111111] transition-colors duration-200"
+            >
+                START A PROJECT
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setupNavbar() {
+        const navbar = document.getElementById("main-navbar");
+        const toggle = document.getElementById("mobile-nav-toggle");
+        const menu = document.getElementById("mobile-menu");
+        const lineTop = document.getElementById("nav-line-top");
+        const lineMid = document.getElementById("nav-line-mid");
+        const lineBot = document.getElementById("nav-line-bot");
+        const links = document.querySelectorAll(".mobile-nav-link");
+
+        if (!navbar) return;
+
+        let isCollapsed = false;
+
+        // Hysteresis scroll handler to ensure completely smooth, flicker-free transitions
+        function handleScroll() {
+            const scrollY =
+                window.scrollY || document.documentElement.scrollTop;
+
+            // Hysteresis: collapse when scroll down > 35px, expand when scroll up < 15px
+            const shouldCollapse = isCollapsed ? scrollY > 15 : scrollY > 35;
+
+            if (shouldCollapse !== isCollapsed) {
+                isCollapsed = shouldCollapse;
+
+                if (isCollapsed) {
+                    // Morph into floating rounded liquid glass pill
+                    navbar.classList.remove(
+                        "w-full",
+                        "max-w-none",
+                        "h-[80px]",
+                        "rounded-none",
+                    );
+                    navbar.classList.add(
+                        "w-[calc(100%-2rem)]",
+                        "sm:w-[calc(100%-3rem)]",
+                        "max-w-[1080px]",
+                        "h-[56px]",
+                        "sm:h-[62px]",
+                        "rounded-full",
+                        "glass-liquid-scrolled",
+                        "translate-y-3",
+                        "sm:translate-y-4",
+                        "px-4",
+                        "sm:px-6",
+                        "lg:px-8",
+                    );
+
+                    if (menu) {
+                        menu.style.top = "78px";
+                    }
+                } else {
+                    // Restore 100% full-width edge-to-edge navbar with seamless border
+                    navbar.classList.remove(
+                        "w-[calc(100%-2rem)]",
+                        "sm:w-[calc(100%-3rem)]",
+                        "max-w-[1080px]",
+                        "h-[56px]",
+                        "sm:h-[62px]",
+                        "rounded-full",
+                        "glass-liquid-scrolled",
+                        "translate-y-3",
+                        "sm:translate-y-4",
+                        "px-4",
+                        "sm:px-6",
+                        "lg:px-8",
+                    );
+                    navbar.classList.add(
+                        "w-full",
+                        "max-w-none",
+                        "h-[80px]",
+                        "rounded-none",
+                    );
+
+                    if (menu) {
+                        menu.style.top = "88px";
+                    }
+                }
+            }
+        }
+
+        // Attach passive scroll listener
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        // Connect to Lenis smooth scrolling if active
+        if ((window as any).__lenis) {
+            (window as any).__lenis.on("scroll", handleScroll);
+        }
+
+        handleScroll();
+
+        // Mobile Menu Toggle
+        let isOpen = false;
+
+        function toggleMenu(open?: boolean) {
+            isOpen = open !== undefined ? open : !isOpen;
+            toggle?.setAttribute("aria-expanded", String(isOpen));
+            menu?.setAttribute("aria-hidden", String(!isOpen));
+
+            if (isOpen) {
+                menu?.classList.remove(
+                    "opacity-0",
+                    "pointer-events-none",
+                    "-translate-y-4",
+                );
+                menu?.classList.add(
+                    "opacity-100",
+                    "pointer-events-auto",
+                    "translate-y-0",
+                );
+                if (lineTop)
+                    lineTop.style.transform = "translateY(6px) rotate(45deg)";
+                if (lineMid) lineMid.style.opacity = "0";
+                if (lineBot)
+                    lineBot.style.transform = "translateY(-6px) rotate(-45deg)";
+            } else {
+                menu?.classList.add(
+                    "opacity-0",
+                    "pointer-events-none",
+                    "-translate-y-4",
+                );
+                menu?.classList.remove(
+                    "opacity-100",
+                    "pointer-events-auto",
+                    "translate-y-0",
+                );
+                if (lineTop) lineTop.style.transform = "none";
+                if (lineMid) lineMid.style.opacity = "1";
+                if (lineBot) lineBot.style.transform = "none";
+            }
+        }
+
+        toggle?.addEventListener("click", () => toggleMenu());
+
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                toggleMenu(false);
+            });
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isOpen) {
+                toggleMenu(false);
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupNavbar);
+    } else {
+        setupNavbar();
+    }
+    document.addEventListener("astro:page-load", setupNavbar);
+</script>
